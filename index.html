@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SMART TRAVEL</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source Sans Pro">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      html {
+      scroll-behavior: smooth;
+    }
+    h1,h2,h3,h4,h5,h6 {font-family: "Roboto"}
+    body {font-family: "Source Sans Pro"}
+    </style>
+  </head>
+<body>
+
+<!-- Navigation bar with links -->
+<div class="w3-bar w3-white w3-text-black">
+  <h2 class="w3-left w3-tag w3-pale-red w3-round">SMART TRAVEL</h2>
+  <a href="contact.html" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-medium w3-right" style="margin-top:10px;">CONTACT US</a>
+  <a href="planyourtrip.html" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-medium w3-right" style="margin-top:10px;">PLAN YOUR TRIP</a>
+  <a href="index.html" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-medium w3-right" style="margin-top:10px;">HOME</a>
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-medium w3-hide-large" style="margin-top:10px;" onclick="myFunction()">&#9776;</a>
+</div>
+
+<div id="demo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-small">
+  <a href="#Home" class="w3-bar-item w3-button">HOME</a>
+  <a href="#PlanYourTrip" class="w3-bar-item w3-button">PLAN YOUR TRIP</a>
+  <a href="#Contact" class="w3-bar-item w3-button">CONTACT US</a>
+</div>
+
+<!-- w3-content defines a container for fixed size centered content, 
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="w3-content" style="max-width:1600px">
+
+  <!-- Image header -->
+<header class="w3-display-container w3-wide" style="padding-bottom:32px;" id="Home">
+    <img class="w3-image" src="https://images.unsplash.com/photo-1534722241884-b646a9f45d6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1906&q=80" alt="Photo by Jamie Street" width="1600" height="1060">
+    <div class="w3-display-left w3-padding-large">
+      <h1 class="w3-text-white">TRAVEL WITH US</h1>
+      <h6><button class="w3-button w3-round w3-pale-red w3-padding-large w3-large w3-hover-opacity-off"><a href="planyourtrip.html">PLAN YOUR TRIP</a></button></h6>
+    </div>
+  </header>
+
+  <!-- Plan Your Trip section -->
+  <div class="w3-row-padding" id="PlanYourTrip">
+    <div class="w3-center w3-padding-32">
+      <h2 class="w3-wide w3-center">PLAN YOUR TRIP</h2>
+         <p class="w3-opacity w3-center"><i>Welcome aboard your carefree journey</i></p><br>
+         <p class="w3-white w3-text-black w3-left-align">
+    Our team is dedicated to transforming travel planning to a more enjoyable and stress-free experience. Our vision is to equip you with the information and expertise needed to craft the perfect trip regardless of the type of adventure you have in mind. Say goodbye to travel worries and let us guide you towards a seamless and unforgettable travel experience.
+          </p>
+      <h6><button id="homePlanTripBtn" class="w3-button w3-round w3-pale-red w3-padding-large w3-large w3-hover-opacity-off"><a href="planyourtrip.html">PLAN YOUR TRIP</a></button></h6>
+    </div>
+
+<!-- Our Approach section -->
+  <div class="w3-white" id="Activities">
+    <div class="w3-container">
+      <div class="w3-center w3-padding-32">
+      <h2 class="w3-wide">OUR APPROACH</h2>
+      <p class="w3-left-align w3-white w3-text-black">
+    We combine modern web development technologies and robust APIs to fetch real-time weather data. The data is processed to determine the destination's climate, activities to do and what to wear.
+      </p>
+      <img src="https://images.unsplash.com/photo-1521666753361-d87de0363001?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80" alt="Photo by Meritt Thomas" style="width:100%" class="w3-hover-opacity">
+      </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Contact -->
+<div class="w3-white" id="Contact">
+  <div class="w3-container w3-padding-32">
+    <div class="w3-center w3-padding-32">
+<h2 class="w3-wide">CONTACT US</h2>
+<p class="w3-white w3-text-black w3-left-align">
+Laila El attar and Nosheen Sobhani are two ambitious computer science students at Western University. We worked on the frontend and backend of this website using HTML, CSS, and JavaScript. Contact us if you have any questions!
+</p>
+    </div>
+</div>
+</div>
+
+  <!-- Footer. This section contains an ad for W3Schools Spaces. You can leave it to support us. -->
+  <footer class="w3-container w3-pale-red w3-center w3-margin-top">
+    <p>Find us below!
+      <p> 
+        Laila El attar
+      </p>
+      <a href="https://www.linkedin.com/in/laila-el-attar/" target="_blank">
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+      </a>
+      <a href="https://github.com/lailaelattar" target="_blank">
+        <i class="fa fa-github w3-hover-opacity"></i>
+      </a>
+
+      <p> 
+        Nosheen Sobhani
+      </p>
+      <a href="https://www.linkedin.com/in/nosheen-sobhani/" target="_blank">
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+      </a>
+      <a href="https://github.com/nosheenso" target="_blank">
+        <i class="fa fa-github w3-hover-opacity"></i>
+      </a>
+
+    </p>
+
+  </footer>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("demo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather app</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source Sans Pro">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    h1,h2,h3,h4,h5,h6 {font-family: "Roboto"}
+    body {font-family: "Source Sans Pro"}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .container {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: white;
+        
+    }
+    .weather {
+        display: flex; 
+        align-items: center;
+        margin: 15px 0;
+        font-size: 1.5rem;
+    }
+    #location {
+        font-size: 3rem;
+        font-weight: 800;
+        font-style: italic;
+    }
+    .desc {
+        font-size: 1.25rem;
+        text-transform: capitalize;
+    }
+    .circle {
+        background-color: black;
+        border-radius: 50px;
+        height: 15px;
+        width: 15px;
+        margin: 0 15px;
+    }
+
+    /* Add these new styles */
+    #cityInput {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 10px;
+        width: 60%; /* Adjust the width as needed */
+        font-size: 1rem;
+    }
+
+    #searchBtn {
+        background-color: #ffdddd;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 1rem;
+    }
+
+    #searchBtn:hover {
+        background-color: #fe2c54;
+    }
+
+    /* Add this new class for hiding elements */
+    .hidden {
+        display: none;
+    }
+
+    #whatToPack {
+        background-color: #ffdddd;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 1rem;
+    }
+
+    #whatToPack:hover {
+        background-color: #fe2c54;
+    }
+
+    </style>
+</head>
+
+<body>
+    <!-- Navigation bar with links -->
+    <div class="w3-bar w3-white w3-text-black">
+        <h2 class="w3-left w3-tag w3-pale-red w3-round">SMART TRAVEL</h2>
+        <a href="contact.html" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-medium w3-right" style="margin-top:10px;">CONTACT US</a>
+        <a href="planyourtrip.html" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-medium w3-right" style="margin-top:10px;">PLAN YOUR TRIP</a>
+        <a href="index.html" class="w3-hide-small w3-bar-item w3-button w3-mobile w3-medium w3-right" style="margin-top:10px;">HOME</a>
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-medium w3-hide-large" style="margin-top:10px;" onclick="myFunction()">&#9776;</a>
+    </div>
+
+    <div id="demo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-small">
+        <a href="#Home" class="w3-bar-item w3-button">HOME</a>
+        <a href="#PlanYourTrip" class="w3-bar-item w3-button">PLAN YOUR TRIP</a>
+        <a href="#Contact" class="w3-bar-item w3-button">CONTACT US</a>
+    </div>
+
+  <div class="container">
+    <div class="search-bar">
+        <input type="text" id="cityInput" placeholder="Enter city">
+        <button id="searchBtn">Search</button>
+    </div>
+    <img src="" alt="" srcset="" id="weather-icon" class="hidden">
+    <div id="location" class="hidden">Unable to Fetch Weather</div>
+    <div class="desc hidden">No Information Available.</div>
+    <div class="weather hidden">
+        <div class="c">Error</div>
+        <div class="circle"></div>
+        <div class="f">Error</div>
+    </div>
+    <div class="info hidden">
+        <h4>Sunrise: <span class="sunrise">No Information Available</span></h4>
+        <h4>Sunset: <span class="sunset">No Information Available</span></h4>
+    </div>
+
+    <div class="buttons">
+        <button id="whatToPack" class="button">What to Pack</button>
+    </div>
+    </div>
+
+    <script>
+        const api = '24610728f106bbc48ea65373766767ac';
+
+        const iconImg = document.getElementById('weather-icon');
+        const loc = document.querySelector('#location');
+        const tempC = document.querySelector('.c');
+        const tempF = document.querySelector('.f');
+        const desc = document.querySelector('.desc');
+        const sunriseDOM = document.querySelector('.sunrise');
+        const sunsetDOM = document.querySelector('.sunset');
+
+        function fetchWeatherData(city) {
+        const base = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api}&units=metric`;
+
+        fetch(base)
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                const { temp } = data.main ?? 0;
+                const place = data.name ?? 'Unknown Location';
+                const { description, icon } = data.weather[0];
+                const { sunrise, sunset } = data.sys ?? 0;
+
+                const iconUrl = `https://openweathermap.org/img/wn/${icon}.png`;
+                const fahrenheit = (temp * 9) / 5 + 32;
+
+                // Save values into variables
+                const savedDescription = description;
+                const savedTempC = temp.toFixed(2);
+                const savedTempF = fahrenheit.toFixed(2);
+
+                // Store the variables in localStorage
+                localStorage.setItem('savedDescription', savedDescription);
+                localStorage.setItem('savedTempC', savedTempC);
+                localStorage.setItem('savedTempF', savedTempF);
+
+                const sunriseGMT = new Date(sunrise * 1000);
+                const sunsetGMT = new Date(sunset * 1000);
+
+                iconImg.src = iconUrl;
+                loc.textContent = `${place}`;
+                desc.textContent = `${description}`;
+                tempC.textContent = `${temp.toFixed(2)} °C`;
+                tempF.textContent = `${fahrenheit.toFixed(2)} °F`;
+                sunriseDOM.textContent = `${sunriseGMT.toLocaleDateString()}, ${sunriseGMT.toLocaleTimeString()}`;
+                sunsetDOM.textContent = `${sunsetGMT.toLocaleDateString()}, ${sunsetGMT.toLocaleTimeString()}`;
+            })
+            .catch((error) => {
+                console.log('Error fetching weather data:', error);
+            });
+            
+        }
+
+    function searchCityWeather() {
+        const cityInput = document.getElementById('cityInput');
+        const city = cityInput.value.trim();
+
+    if (city === '') {
+        console.log('Please enter a city.');
+        return;
+    }
+        fetchWeatherData(city);
+    }
+
+    // Add event listener to the search button
+        const searchBtn = document.getElementById('searchBtn');
+        searchBtn.addEventListener('click', searchCityWeather);
+
+        document.getElementById("searchBtn").addEventListener("click", function() {
+        document.getElementById("weather-icon").classList.remove("hidden");
+        document.getElementById("location").classList.remove("hidden");
+        document.querySelector(".desc").classList.remove("hidden");
+        document.querySelector(".weather").classList.remove("hidden");
+        document.querySelector(".info").classList.remove("hidden");
+    });
+
+        document.getElementById("searchBtn").addEventListener("click", function() {
+        document.getElementById("weather-icon").classList.remove("hidden");
+        document.getElementById("location").classList.remove("hidden");
+        document.querySelector(".desc").classList.remove("hidden");
+        document.querySelector(".weather").classList.remove("hidden");
+        document.querySelector(".info").classList.remove("hidden");
+    });
+
+    document.getElementById("whatToPack").addEventListener("click", function() {
+        window.location.href = "whatToPack.html";
+    });
+
+    </script>
+</body>
+
+</html>
